@@ -1,38 +1,146 @@
 .App {
-  text-align: center;
+    text-align: center;
 }
 
 .App-logo {
-  height: 40vmin;
-  pointer-events: none;
+    height: 40vmin;
+    pointer-events: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+.list {
+    text-align: left;
+    max-width: 750px;
+    margin: auto;
   }
+  
+  .submit-form {
+    max-width: 300px;
+    margin: auto;
+  }
+  
+  .edit-form {
+    max-width: 300px;
+    margin: auto;
+  }
+
+@media (prefers-reduced-motion: no-preference) {
+    .App-logo {
+        animation: App-logo-spin infinite 20s linear;
+    }
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
 }
 
 .App-link {
-  color: #61dafb;
+    color: #61dafb;
 }
 
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #000000;
+    color: #ffffff;
+}
+
+.logo {
+    font-size: 20px;
+    margin: 10px;
+}
+
+.logo a {
+    text-decoration: none;
+    color: #ffffff;
+    margin-left: 20px;
+}
+
+.navbar-links ul {
+    margin: 0px 10px;
+    padding: 0px;
+    display: flex;
+}
+
+.navbar-links ul li {
+    list-style: none;
+}
+
+.navbar-links ul li a {
+    text-decoration: none;
+    color: #ffffff;
+    padding: 20px;
+    display: block;
+}
+
+.navbar-links ul li a:hover {
+    background: #ffffff;
+    color: #000000;
+}
+
+.togglebtn {
+    top: 10px;
+    right: 16px;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 20px;
+}
+
+.line {
+    height: 3px;
+    width: 100%;
+    background: #ffffff;
+    border-radius: 10px;
+}
+
+@media only screen and (max-width: 600px) {
+    .togglebtn {
+        display: flex;
+    }
+
+    .navbar-links {
+        display: none;
+        width: 100%;
+    }
+
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .navbar-links ul {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .navbar-links ul li {
+        text-align: center;
+    }
+
+    .navbar-links ul li a {
+        padding: 16px;
+    }
+
+    .navbar-links.active {
+        display: flex;
+    }
+}
+
+
 @keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
 }

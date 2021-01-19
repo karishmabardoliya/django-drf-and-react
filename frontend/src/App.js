@@ -1,46 +1,39 @@
-import React, { Component, component } from 'react';
+import React, { Component } from 'react';
 import './App.css';
-
+import TutorialList from './components/TutorialList';
+import Tutorial from './components/Tutorial';
+import AddTutorial from './components/AddTutorial';
+import { Switch, Route, Link } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
 class App extends Component {
-    state = {
-        todos: []
-    }
-    
-    async componentDidMount() {
-        try {
-            const res = await fetch('http://127.0.0.1:8000/api/')
-            const todos = await res.json();
-            this.setState({
-                todos
-            });
-        } catch (error) {
-            console.log('error ===>>', error);
-        }
-    }
-    
     render() {
-        const buttonStyle = {
-            position: 'absolute',
-            right: '10px',
-            top: '5px',
-            backgroundColor: '#2edbd4',
-            padding: '10px 10px'
-          };
         return (
-          <div>
-              <div>
-                  <button style={buttonStyle}>Add Todo</button>
-              </div>
-              {this.state.todos.map(item => (
-                <div key={item.id}>
-                    <h1>{item.title}</h1>
-                    <span>{item.description}</span>
+            <div>
+                <nav className="navbar">
+                    <div className='logo'>
+                        <a href="/tutorials" className="togglebtn">Django React CRUD</a>
+                    </div>
+                    <div className="navbar-links">
+                        <ul>
+                            <li className="nav-item">
+                                <Link to={"/tutorials"} className="nav-link">Tutorials</Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link to={"/add"} className="nav-link">Add</Link>
+                            </li> 
+                        </ul>
+                    </div>
+                </nav>
+                <div className="container mt-3">
+                    <Switch>
+                        <Route exact path={["/", "/tutorials"]} component={TutorialList} />
+                        <Route exact path="/add" component={AddTutorial} />
+                        <Route path="/tutorials/:id" component={Tutorial} />
+                    </Switch>
                 </div>
-              ))}
-          </div>  
+            </div>
         );
     }
 }
-
 
 export default App;
