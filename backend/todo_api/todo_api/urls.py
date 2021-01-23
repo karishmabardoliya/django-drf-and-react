@@ -14,9 +14,22 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include, re_path
+from rest_auth.registration.views import VerifyEmailView
+from allauth.account.views import confirm_email as allauthemailconfirmation
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-     path('api/', include('todos.urls')),
+    path('api/', include('todos.urls')),
+    path('rest-auth/', include('rest_auth.urls')),
+    path('rest-auth/registration/', include('rest_auth.registration.urls')),
+    re_path(r'^account-confirm-email/(?P<key>[-:\w]+)/$', VerifyEmailView.as_view(),
+     name='account_confirm_email'),
+    re_path(r'^account-confirm-email/', VerifyEmailView.as_view(),name='account_email_verification_sent')
+    
+    # re_path(r'^account-confirm-email/(?P<key>[-:\w]+)/$', VerifyEmailView.as_view(), name='account_confirm_email'),
+    # path('account-confirm-email/', VerifyEmailView.as_view(), name='account_email_verification_sent'),
+    # re_path(r'^rest-auth/registration/account-confirm-email/(?P<key>{0})/$'.format(regex.full_string_regex),
+    #     allauthemailconfirmation, name="account_confirm_email"),
 ]
